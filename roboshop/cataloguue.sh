@@ -2,7 +2,7 @@
 COMPONENT=catalogue
 LOGFILE="/tmp/$COMPONENT"
 ID=$(id -u)
-if [ $id -ne 0 ] ; then
+if [ $ID -ne 0 ] ; then
         echo -e "\e[32m The script is executed run as a root user or with a sudo previlege user \e[0m]"
         exit 1
 fi
