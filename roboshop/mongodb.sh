@@ -8,7 +8,7 @@ if [ $ID -ne 0 ] ; then
 fi
 
 
-stat (){
+stat(){
     if [ $? -eq 0 ] ; then
         echo -e "\e[32m Success \e[0m"
     else
