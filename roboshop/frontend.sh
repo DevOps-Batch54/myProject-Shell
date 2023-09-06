@@ -11,7 +11,7 @@ echo -n "Install the nginx: "
 yum install nginx -y &>> "/tmp/$COMPONENT.log"
 if [ $? -eq 0 ] ; then
         echo -e "\e[35m Success \e[0m"
-    elce
+    else
         echo -e "\e[35m Failure \e[0m"
 fi
 
