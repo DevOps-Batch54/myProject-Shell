@@ -7,14 +7,14 @@ if [ $ID -ne 0 ] ; then
         exit 1
 fi
 stat(){
-
-    if [$? -eq 0] ; then
+    if [ $? -eq 0 ] ; then
         echo -e "\e[35m Success \e[0m"
     else
         echo -e "\e[35m Success \e[0m"
         exit 2
     fi
 }
+
 
 echo -n "Download the nodejs :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
