@@ -28,8 +28,11 @@ stat $?
 
 echo -n "Enable the mongodb :"
 systemctl enable mongod &>> LOGFILE
-systemctl start mongod &>> LOGFILE    
+    
 stat $?
 echo -n "Update the $COMPONENT IP adress :"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+stat $?
+echo -n "Stating the $COMPONENT service"
+systemctl start mongod &>> LOGFILE
 stat $?
