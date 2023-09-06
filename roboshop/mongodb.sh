@@ -22,8 +22,11 @@ echo -n "Download $COMPONENT component"
 curl -s -o /etc/yum.repos.d/$COMPONENT.repo https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mongo.repo
 stat $?
 
-echo -n "Installing the $COMPONENT component"
+echo -n "Installing the $COMPONENT component :"
 yum install -y mongodb-org &>> LOGFILE
 stat $?
-# systemctl enable mongod
-# systemctl start mongod
+
+echo -n "Enable the mongodb :"
+systemctl enable mongod &>> LOGFILE
+systemctl start mongod &>> LOGFILE    
+stat $?
