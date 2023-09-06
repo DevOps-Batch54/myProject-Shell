@@ -1,11 +1,12 @@
 #!bin/bash
-COMPONENT=mongodb
 
+COMPONENT=mongodb
 ID=$(id -u)
 if [ $ID -ne 0 ] ; then
-        echo -e "e\[35m This script is expected by a root user or with a sudo previlege user \e[0m"
+        echo -e "e\[35m This script is expected to be run as a root user or with a sudo previlege user \e[0m"
         exit1
 fi
+
 
 start (){
     if [ $? -eq 0 ] ; then
