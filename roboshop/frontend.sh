@@ -1,7 +1,7 @@
 #!bin/bash
 
 COMPONENT=frontend
-
+LOGFILE="/tmp/$COMPONENT.log"
 
 
 ID=$(id -u)
@@ -22,7 +22,7 @@ stat(){
 }
 
 echo -n "Install the nginx: "
-yum install nginx -y &>> "/tmp/$COMPONENT.log"
+yum install nginx -y &>> $LOGFILE
 stat $?
 
 echo -n "Download the $COMPONENT component"
@@ -31,14 +31,16 @@ stat $?
 
 echo -n "Performing Cleanup"
 cd /usr/share/nginx/html
-rm -rf *
+rm -rf * &>> $LOGFILE
 stat $?
 
-# unzip /tmp/frontend.zip
-# mv frontend-main/* .
-# mv static/* .
-# rm -rf frontend-main README.md
-# mv localhost.conf /etc/nginx/default.d/roboshop.conf
+echo -n "Extracting the $COMPONENT component: "
+unzip /tmp/$COMPONENT.zip &>> $LOGFILE
+mv $COMPONENT-main/* . &>> $LOGFILE
+mv static/* . &>> $LOGFILE
+rm -rf $COMPONENT-main README.md $LOGFILE
+mv localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
+
 
 # systemctl enable nginx
 # systemctl start nginx
