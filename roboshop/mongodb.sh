@@ -44,9 +44,9 @@ curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPO
 stat $?
 echo -n "Extracting the $COMPONENT schema :"
 cd /tmp
-unzip $COMPONENT.zip
+unzip $COMPONENT.zip &>> LOGFILE
 stat $?
-echo -n "Injecting the schema"
+echo -n "Injecting the schema :"
 cd $COMPONENT-main
 mongo < catalogue.js &>>LOGFILE
 mongo < users.js &>>LOGFILE
