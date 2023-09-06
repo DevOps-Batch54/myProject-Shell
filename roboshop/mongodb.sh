@@ -14,6 +14,7 @@ stat(){
     else
         echo -e "\e[32m Failure \e[0m"
         exit 2
+    fi    
 }
 
 echo -n "Download $COMPONENT component"
