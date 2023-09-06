@@ -46,7 +46,3 @@ echo -n "Starting the $COMPONENT service"
 systemctl enable nginx &>> LOGFILE
 systemctl start nginx &>> LOGFILE
 stat $?
-
-
-# systemctl enable nginx
-# systemctl start nginx
