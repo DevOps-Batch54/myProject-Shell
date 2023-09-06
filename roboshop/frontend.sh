@@ -1,12 +1,13 @@
 #!bin/bash
-echo "I am Frontend"
 
+ID=$(id -u)
+if [ $ID -ne 0 ] ; then
+    echo -e "\e[31m This script is expected to be run as a root user or with sudo previlege \e[0m"
+    exit 1
+fi
 
-# echo -n "Install the nginx: "
-# if ( $? -ne 0 ) ; then
-#         echo -n "
-# fi
-# yum install nginx -y &>> /tmp/frontend.log
+echo -n "Install the nginx: "
+yum install nginx -y &>> /tmp/frontend.log
 
 
 # yum install nginx -y
