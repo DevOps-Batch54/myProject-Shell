@@ -23,8 +23,5 @@ yum install nodejs -y &>> LOGFILE
 stat $?
 
 echo -n "Create the user :"
-    if [ $? -ne 0 ] ; then
-        echo -n "Creating the service account"
         useradd $APPUSER &>> LOGFILE
         stat $?
-    fi
