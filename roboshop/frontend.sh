@@ -40,7 +40,7 @@ mv $COMPONENT-main/* . &>> $LOGFILE
 mv static/* . &>> $LOGFILE
 rm -rf $COMPONENT-main README.md $LOGFILE
 mv localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
-
+stat $?
 
 # systemctl enable nginx
 # systemctl start nginx
