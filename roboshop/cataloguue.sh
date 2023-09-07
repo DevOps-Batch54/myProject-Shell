@@ -1,7 +1,7 @@
 #!bin/bash
 COMPONENT=catalogue
 APPUSER=roboshop
-LOGFILE="/tmp/$COMPONENT"
+LOGFILE="/tmp/$COMPONENT.log"
 ID=$(id -u)
 if [ $ID -ne 0 ] ; then
         echo -e "\e[32m The script is executed run as a root user or with a sudo previlege user \e[0m]"
