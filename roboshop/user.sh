@@ -37,10 +37,10 @@ cd /home/$APPUSER/$COMPONENT
 npm install -y &>> LOGFILE
 stat $?
 
-# echo -n "Update the $COMPONENT systemd services :"
-# sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service
-# mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
-# stat $?
+echo -n "Update the $COMPONENT systemd services :"
+sed -i -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+stat $?
 
 echo -n "Start the $COMPONENT service :"
 systemctl daemon-reload
