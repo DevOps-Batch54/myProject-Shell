@@ -10,5 +10,10 @@ echo -n "Install the $COMPONENT file :"
 yum install redis-6.2.13 -y &>> LOGFILE
 stat $?
 
+echo -n "Update the $COMPONENT.conf file :"
+sed -i -e 's/bind 127.0.0.1 -::1/bind 0.0.0.0 -::1/' /etc/redis.conf
+stat $?
+
+
 
 echo -e " ******* \e[35m $COMPONENT installation has Completed \e[0m *******"
