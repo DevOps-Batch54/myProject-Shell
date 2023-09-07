@@ -48,6 +48,16 @@ cd /home/$APPUSER/$COMPONENT
 npm install -y &>> LOGFILE
 stat $?
 
+echo -n "Update the $COMPONENT systemd services :"
+sed -i -e 's/MONGO_DNSNAME/mongodb.$APPUSER.internal/' /home/$APPUSER/$COMPONENT/systemd.service
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+stat $?
+echo -n "Start the $COMPONENT service :"
+systemctl daemon-reload
+systemctl start $COMPONENT &>> LOGFILE
+systemctl enable $COMPONENT &>> LOGFILE
+# systemctl status catalogue -l
+stat $?
 
 
 
