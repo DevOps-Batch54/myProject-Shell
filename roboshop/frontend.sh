@@ -45,7 +45,7 @@ stat $?
 
 echo -n "Updating the $COMPONENT reverse proxy details :"
 for content in catalogue ; do
-    sed -i -e '$content/s/localhost/$content.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
+    sed -i -e "$content/s/localhost/$content.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
 done
 
 
