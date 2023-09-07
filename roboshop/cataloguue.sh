@@ -42,5 +42,20 @@ echo -n "Modifing the ownership :"
 mv $COMPONENT-main $COMPONENT
 chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
 stat $? 
-# $ cd /home/roboshop/catalogue
-# $ npm install
+
+echo -n "Go to $COMPONENT home directory and install the npm:"
+cd /home/$APPUSER/$COMPONENT
+npm install -y &>> LOGFILE
+stat $?
+
+
+
+
+
+
+
+
+
+
+
+
