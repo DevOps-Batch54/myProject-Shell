@@ -11,12 +11,12 @@ yum install redis-6.2.13 -y &>> LOGFILE
 stat $?
 
 echo -n "Update the $COMPONENT.conf file :"
-sed -i -e 's/bind 127.0.0.1 -::1/bind 0.0.0.0 -::1/' /etc/redis.conf
+sed -i -e 's/bind 127.0.0.1 -::1/bind 0.0.0.0 -::1/' /etc/$COMPONENT.conf
 stat $?
 
 echo -n "Start the $COMPONENT service :"
-systemctl enable redis
-systemctl start redis
+systemctl enable $COMPONENT
+systemctl start $COMPONENT
 stat $?
 
 
