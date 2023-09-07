@@ -35,9 +35,12 @@ stat $?
 
 echo -n "Copying the $COMPONENT to $APPUSER home directory :"
 cd /home/$APPUSER
-unzip /tmp/$COMPONENT.zip &>> LOGFILE
+unzip -o /tmp/$COMPONENT.zip &>> LOGFILE
 stat $?
 
-# $ mv catalogue-main catalogue
+echo -n "Modifing the ownership :"
+mv $COMPONENT-main $COMPONENT
+chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
+stat $? 
 # $ cd /home/roboshop/catalogue
 # $ npm install
