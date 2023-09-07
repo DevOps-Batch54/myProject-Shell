@@ -20,6 +20,7 @@ stat(){
             exit 2
     fi
 }
+echo -e " ******* \e[35m $COMPONENT installation has Started \e[0m *******"
 
 echo -n "Install the nginx: "
 yum install nginx -y &>> $LOGFILE
@@ -42,7 +43,16 @@ rm -rf $COMPONENT-main README.md $LOGFILE
 mv localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
 stat $?
 
+for content in catalogue ; do
+    sed -i -e 's/$content/s/localhost/$content.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
+done
+
+
 echo -n "Starting the $COMPONENT service"
+systemctl daemon-reload
 systemctl enable nginx &>> LOGFILE
 systemctl start nginx &>> LOGFILE
 stat $?
+
+
+echo -e " ******* \e[35m $COMPONENT installation has completed \e[0m *******"

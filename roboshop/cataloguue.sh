@@ -16,7 +16,8 @@ stat(){
     fi
 }
 
-
+echo -e " ******* \e[35m $COMPONENT installation has started \e[0m *******"
+ 
 echo -n "Download the nodejs :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>>  LOGFILE
 yum install nodejs -y &>> LOGFILE
@@ -60,6 +61,8 @@ systemctl enable $COMPONENT &>> LOGFILE
 systemctl restart $COMPONENT &>> LOGFILE
 # systemctl status catalogue -l
 stat $?
+
+echo -e " ******* \e[35m $COMPONENT installation has completed \e[0m *******"
 
 
 
