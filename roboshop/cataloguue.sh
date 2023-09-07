@@ -22,7 +22,7 @@ curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>>
 yum install nodejs -y &>> LOGFILE
 stat $?
 
-id $APPUSER
+id $APPUSER &>> LOGFILE
 if [ $? -ne 0 ] ; then
 echo -n "Creating the service account :"
         useradd $APPUSER &>> LOGFILE
