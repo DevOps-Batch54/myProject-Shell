@@ -35,7 +35,7 @@ stat $?
 
 echo -n "Copying the $COMPONENT to $APPUSER home directory :"
 cd /home/$APPUSER
-unzip /tmp/$COMPONENT.zip
+unzip /tmp/$COMPONENT.zip &>> LOGFILE
 stat $?
 
 # $ mv catalogue-main catalogue
