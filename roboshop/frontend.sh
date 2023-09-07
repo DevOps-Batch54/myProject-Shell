@@ -43,6 +43,7 @@ rm -rf $COMPONENT-main README.md $LOGFILE
 mv localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
 stat $?
 
+echo -n "Updating the $COMPONENT reverse proxy details :"
 for content in catalogue ; do
     sed -i -e 's/$content/s/localhost/$content.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
 done
