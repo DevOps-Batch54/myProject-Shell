@@ -15,8 +15,8 @@ sed -i -e 's/bind 127.0.0.1 -::1/bind 0.0.0.0 -::1/' /etc/$COMPONENT.conf
 stat $?
 
 echo -n "Start the $COMPONENT service :"
-systemctl enable $COMPONENT
-systemctl start $COMPONENT
+systemctl enable $COMPONENT &>> LOGFILE
+systemctl start $COMPONENT &>> LOGFILE
 stat $?
 
 
