@@ -12,6 +12,7 @@ stat $?
 
 echo -n "Update the $COMPONENT.conf file :"
 sed -i -e 's/bind 127.0.0.1 -::1/bind 0.0.0.0 -::1/' /etc/$COMPONENT.conf
+sed -i -e 's/bind 127.0.0.1 -::1/bind 0.0.0.0 -::1/' /etc/$COMPONENT/$COMPONENT.conf
 stat $?
 
 echo -n "Start the $COMPONENT service :"
