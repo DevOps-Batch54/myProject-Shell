@@ -7,7 +7,7 @@ echo -n "Download the $COMPONENT repo components :"
 curl -L https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/$COMPONENT.repo -o /etc/yum.repos.d/$COMPONENT.repo
 stat $?
 echo -n "Install the $COMPONENT file :"
-yum install redis-6.2.13 -y &>> LOGFILE
+yum install $COMPONENT-6.2.13 -y &>> LOGFILE
 stat $?
 
 echo -n "Update the $COMPONENT.conf file :"
