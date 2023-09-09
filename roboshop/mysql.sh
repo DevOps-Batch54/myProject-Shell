@@ -31,3 +31,15 @@ if [ $? -eq 0 ] ; then
     echo "UNINSTALL PLUGIN Validate_password;" | mysql -uroot -pRoboShop@1 &>> LOGFILE
     stat $?
 fi
+
+echo -n "Downloading the $COMPONENT schema :"
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
+stat $?
+echo -n "Extracting the $COMPONENT schema :"
+cd /tmp
+unzip -o $COMPONENT.zip &>> LOGFILE
+cd $COMPONENT-main
+mysql -u root -pRoboShop@1 <shipping.sql
+stat $?
+
+
