@@ -3,6 +3,7 @@ COMPONENT=catalogue
 APPUSER=roboshop
 source common.sh
 
+NODEJS
 
 
 
