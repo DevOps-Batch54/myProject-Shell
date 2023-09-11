@@ -16,3 +16,11 @@ echo -n "Starting the $COMPONENT :"
 systemctl enable rabbitmq-server &>> $LOGFILE 
 systemctl start rabbitmq-server &>> $LOGFILE
 stat $?
+
+echo -n "Creating the $COMPONENT $APPUSER"
+rabbitmqctl add_user roboshop roboshop123 &>> $LOGFILE
+stat $?
+echo -n "Configuring the $COMPONENT $APPUSER privileges"
+rabbitmqctl set_user_tags roboshop administrator &>> $LOGFILE
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> $LOGFILE
+stat $?
