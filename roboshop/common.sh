@@ -47,7 +47,7 @@ NPM-Install(){
 
 CONFIGURE-SERVICE(){
     echo -n "Update the $COMPONENT systemd services :"
-    sed -i -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service
+    sed -i -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service
 
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     stat $?
@@ -99,5 +99,28 @@ JAVA() {
     CREATE-USER
     UNZIPFILE
     MVN_PAVKAGE
+    CONFIGURE-SERVICE
+}
+
+PN_PAVKAGE() {
+    echo -n "Preparing $COMOPONENT artifacts"
+    cd /home/$APPUSER/$COMPONENT &>> $LOGFILE
+    pip3 install -r requirements.txt &>> $LOGFILE
+    stat $?
+    USERID=$( id -u roboshop)
+    GROUPID=$( id -g roboshop)
+    echo -n "Updating the uid and gid in the $COMPONENT.ini file"
+    sed -i -e "s/^uid/ c uid=$USERID" -e "s/^gid/ c gid=$GROUPID" /home/$APPUSER/$COMPONENT/$COMPONENT.ini
+    stat $?
+}
+
+PYTHON() {
+    echo -e " ******* \e[35m $COMPONENT installation has started \e[0m *******"
+    echo -n "Installing Python"
+    yum install python36 gcc python3-devel -y  &>> $LOGFILE
+    stat $?
+    CREATE-USER
+    UNZIPFILE
+    PN_PAVKAGE
     CONFIGURE-SERVICE
 }
