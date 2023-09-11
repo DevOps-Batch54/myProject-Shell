@@ -110,7 +110,7 @@ PN_PAVKAGE() {
     USERID=$( id -u roboshop)
     GROUPID=$( id -g roboshop)
     echo -n "Updating the uid and gid in the $COMPONENT.ini file"
-    sed -i -e 's/^uid/ c uid=$USERID' -e 's/^gid/ c gid=$GROUPID' /home/$APPUSER/$COMPONENT/$COMPONENT.ini
+    sed -i -e 's/^uid/ c uid=$USERID/' -e 's/^gid/ c gid=$GROUPID/' /home/$APPUSER/$COMPONENT/$COMPONENT.ini
     stat $?
 }
 
