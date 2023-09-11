@@ -94,7 +94,7 @@ MVN_PAVKAGE() {
 JAVA() {
     echo -e " ******* \e[35m $COMPONENT installation has started \e[0m *******"
     echo -n "Installing Maven"
-    yum install maven -y   ( installs maven with java 8 ) &>> LOGFILE
+    yum install maven -y  &>> LOGFILE
     stat $?
     CREATE-USER
     UNZIPFILE
