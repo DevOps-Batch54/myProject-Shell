@@ -1,5 +1,5 @@
 #!/bin/bash
-COMOPONENT=rabbitmq
+COMPONENT=rabbitmq
 source common.sh
 
 echo -e " ******* \e[35m $COMPONENT installation has started \e[0m *******"
