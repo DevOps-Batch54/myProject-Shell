@@ -85,7 +85,7 @@ NODEJS(){
 }
 MVN_PAVKAGE() {
     echo -n "Preparing $COMOPONENT artifacts"
-    cd home/$APPUSER/$COMOPONENT
+    cd home/$APPUSER/$COMPONENT
     mvn clean package &>> LOGFILE
     mv target/shipping-1.0.jar shipping.jar
     stat $?
