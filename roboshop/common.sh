@@ -63,7 +63,7 @@ CONFIGURE-SERVICE(){
 
 }
 
-CREATE-USER(){
+CREATE-USER() {
     id $APPUSER &>> $LOGFILE
     if [ $? -ne 0 ] ; then
     echo -n "Creating the service account :"
