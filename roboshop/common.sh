@@ -83,3 +83,20 @@ NODEJS(){
     NPM-Install
     CONFIGURE-SERVICE
 }
+MVN_PAVKAGE() {
+    echo -n "Preparing $COMOPONENT artifacts"
+    cd home/$APPUSER/$COMOPONENT
+    mvn clean package &>> LOGFILE
+    mv target/shipping-1.0.jar shipping.jar
+    stat $?
+}
+
+JAVA() {
+    echo -e " ******* \e[35m $COMPONENT installation has started \e[0m *******"
+    echo -n "Installing Maven"
+    yum install maven -y   ( installs maven with java 8 ) &>> LOGFILE
+    stat $?
+    CREATE-USER
+    UNZIPFILE
+    MVN_PAVKAGE
+}
