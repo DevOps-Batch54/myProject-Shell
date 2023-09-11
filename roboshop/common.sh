@@ -107,8 +107,8 @@ PN_PAVKAGE() {
     cd /home/$APPUSER/$COMPONENT &>> $LOGFILE
     pip3 install -r requirements.txt &>> $LOGFILE
     stat $?
-    USERID=$( id -u roboshop)
-    GROUPID=$( id -g roboshop)
+    USERID=$(id -u roboshop)
+    GROUPID=$(id -g roboshop)
     echo -n "Updating the uid and gid in the $COMPONENT.ini file"
     sed -i -e 's/^uid/ c uid=$USERID/' -e 's/^gid/ c gid=$GROUPID/' /home/$APPUSER/$COMPONENT/$COMPONENT.ini
     stat $?
