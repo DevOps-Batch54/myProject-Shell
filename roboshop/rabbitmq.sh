@@ -10,3 +10,9 @@ stat $?
 
 echo -n "Installing $COMPONENT :"
 yum install rabbitmq-server -y &>> $LOGFILE
+stat $?
+
+echo -n "Starting the $COMPONENT :"
+systemctl enable rabbitmq-server &>> $LOGFILE 
+systemctl start rabbitmq-server &>> $LOGFILE
+stat $?
