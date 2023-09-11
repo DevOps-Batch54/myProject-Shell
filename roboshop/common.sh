@@ -28,8 +28,8 @@ UNZIPFILE(){
 
     echo -n "Copying the $COMPONENT to $APPUSER home directory :"
     cd /home/$APPUSER
-    rm -rf $COMPONENT &>> LOGFILE
-    unzip -o /tmp/$COMPONENT.zip &>> LOGFILE
+    rm -rf $COMPONENT &>> $LOGFILE
+    unzip -o /tmp/$COMPONENT.zip &>> $LOGFILE
     stat $?
     
     echo -n "Modifing the ownership :"
@@ -41,7 +41,7 @@ UNZIPFILE(){
 NPM-Install(){
         echo -n "Generating npm $COMPONENT artifactory :"
         cd /home/$APPUSER/$COMPONENT
-        npm install -y &>> LOGFILE
+        npm install -y &>> $LOGFILE
         stat $?
 }
 
@@ -54,9 +54,9 @@ CONFIGURE-SERVICE(){
 
     echo -n "Start the $COMPONENT service :"
     systemctl daemon-reload
-    systemctl start $COMPONENT &>> LOGFILE
-    systemctl enable $COMPONENT &>> LOGFILE
-    systemctl restart $COMPONENT &>> LOGFILE
+    systemctl start $COMPONENT &>> $LOGFILE
+    systemctl enable $COMPONENT &>> $LOGFILE
+    systemctl restart $COMPONENT &>> $LOGFILE
     stat $?
 
     echo -e " ******* \e[35m $COMPONENT installation has completed \e[0m *******"
@@ -64,10 +64,10 @@ CONFIGURE-SERVICE(){
 }
 
 CREATE-USER(){
-    id $APPUSER &>> LOGFILE
+    id $APPUSER &>> $LOGFILE
     if [ $? -ne 0 ] ; then
     echo -n "Creating the service account :"
-            useradd $APPUSER &>> LOGFILE
+            useradd $APPUSER &>> $LOGFILE
             stat $?
     fi
 }
@@ -75,8 +75,8 @@ CREATE-USER(){
 
 NODEJS(){
     echo -n "Download the nodejs :"
-    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>>  LOGFILE
-    yum install nodejs -y &>> LOGFILE
+    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>>  $LOGFILE
+    yum install nodejs -y &>> $LOGFILE
     stat $?
     CREATE-USER
     UNZIPFILE
@@ -86,7 +86,7 @@ NODEJS(){
 MVN_PAVKAGE() {
     echo -n "Preparing $COMOPONENT artifacts"
     cd /home/$APPUSER/$COMPONENT
-    mvn clean package &>> LOGFILE
+    mvn clean package &>> $LOGFILE
     mv target/shipping-1.0.jar shipping.jar
     stat $?
 }
@@ -94,7 +94,7 @@ MVN_PAVKAGE() {
 JAVA() {
     echo -e " ******* \e[35m $COMPONENT installation has started \e[0m *******"
     echo -n "Installing Maven"
-    yum install maven -y  &>> LOGFILE
+    yum install maven -y  &>> $LOGFILE
     stat $?
     CREATE-USER
     UNZIPFILE
