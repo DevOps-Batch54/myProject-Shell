@@ -7,7 +7,7 @@ echo -e "AMI id used to launch the EC2 is \e[35m $SG_ID \e[0m"
 
 echo -e "******* Launching Server *******"
 RUN_ID=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t2.micro | jq '.Groups[].ImageId' | sed -e 's/"//g')
-echo -e "AMI id used to launch the EC2 is \e[38m $RUN_ID \e[0m"
+echo -e "AMI id used to launch the EC2 is \e[32m $RUN_ID \e[0m"
 
 
 
